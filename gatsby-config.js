@@ -115,7 +115,7 @@ module.exports = {
             }
             `,
             output: '/rss.xml',
-            title: 'Gatsby RSS feed',
+            title: 'Blog RSS feed',
           },
         ],
       },
@@ -123,8 +123,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Stef Thoen`,
+        short_name: `Stef Thoen`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
