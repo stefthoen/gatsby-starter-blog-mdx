@@ -8,7 +8,8 @@ const Layout = props => {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
-  if (location.pathname === rootPath) {
+  console.log(location.pathname)
+  if (location.pathname === rootPath || location.pathname === '/blog') {
     header = (
       <h1
         style={{
