@@ -48,11 +48,10 @@ exports.createPages = ({ graphql, actions }) => {
 }
 
 const createPages = (createPage, template, posts) => {
-  console.log(posts.length)
   posts.forEach((post, index) => {
-    console.log(post.node.fields.collection)
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
+    const slug = `/${post.node.fields.collection}${post.node.fields.slug}`
 
     createPage({
       path: post.node.fields.slug,
@@ -74,7 +73,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: `/${getNode(node.parent).sourceInstanceName}${value}`,
     })
     createNodeField({
       name: `collection`,
