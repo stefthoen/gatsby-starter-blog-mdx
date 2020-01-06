@@ -43,7 +43,6 @@ const NowPage = props => (
         some blogging
       </li>
     </ul>
-    <hr />
     <p>
       Updated <em>January 3th, 2020</em> from <em>Cussy-en-Morvan, France</em>
     </p>

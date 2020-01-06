@@ -17,6 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
               id
               fields {
                 slug
+                collection
               }
               frontmatter {
                 title
@@ -33,21 +34,34 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMdx.edges
+    const all = result.data.allMdx.edges
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+    const posts = all.filter(post => post.node.fields.collection == `blog`)
 
-      createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
-      })
+    const projects = all.filter(
+      post => post.node.fields.collection == `projects`
+    )
+
+    createPages(createPage, blogPost, posts)
+    createPages(createPage, blogPost, projects)
+  })
+}
+
+const createPages = (createPage, template, posts) => {
+  console.log(posts.length)
+  posts.forEach((post, index) => {
+    console.log(post.node.fields.collection)
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node
+    const next = index === 0 ? null : posts[index - 1].node
+
+    createPage({
+      path: post.node.fields.slug,
+      component: template,
+      context: {
+        slug: post.node.fields.slug,
+        previous,
+        next,
+      },
     })
   })
 }
@@ -61,6 +75,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value,
+    })
+    createNodeField({
+      name: `collection`,
+      node,
+      value: getNode(node.parent).sourceInstanceName,
     })
   }
 }

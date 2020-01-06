@@ -13,7 +13,7 @@ const Bio = () => (
         <div
           style={{
             display: `flex`,
-            marginBottom: rhythm(2.5),
+            marginBottom: rhythm(1),
           }}
         >
           <Image
@@ -33,6 +33,7 @@ const Bio = () => (
             <a href={`https://twitter.com/${social.twitter}`}>
               You should follow him on Twitter
             </a>
+            . © {new Date().getFullYear()}
           </p>
         </div>
       )

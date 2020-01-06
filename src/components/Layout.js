@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'gatsby'
-
 import { rhythm, scale } from '../utils/typography'
+
+import Header from './Header'
+import Bio from '../components/Bio'
 
 const Layout = props => {
   const { location, title, children } = props
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
-  console.log(location.pathname)
   if (location.pathname === rootPath || location.pathname === '/blog') {
     header = (
       <h1
@@ -61,13 +62,10 @@ const Layout = props => {
         padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
       }}
     >
-      {header}
+      <Header title={title} />
       {children}
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <hr />
+      <Bio />
     </div>
   )
 }
