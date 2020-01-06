@@ -19,26 +19,16 @@ const BlogIndex = props => {
       <div
         style={{
           marginBottom: rhythm(2),
+          marginTop: `3.5rem`,
         }}
       >
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <p>
+          I'm a Dutch full-stack webdeveloper living in the Morvan, France. I
+          love trail running, hiking, climbing, DIY, reading, gaming and making
+          music.
+        </p>
+        <h2>Writing</h2>
+        <h2>Projects</h2>
       </div>
     </Layout>
   )
