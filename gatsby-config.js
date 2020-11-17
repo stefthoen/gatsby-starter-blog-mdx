@@ -9,6 +9,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-netlify-cms`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -85,7 +86,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
+              return allMdx.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   data: edge.node.frontmatter.date,
