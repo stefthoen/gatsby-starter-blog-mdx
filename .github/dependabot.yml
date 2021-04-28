@@ -1,0 +1,34 @@
+version: 2
+registries:
+  git-github-com:
+    type: git
+    url: https://github.com
+    username: c-access-token
+    password: "${{secrets.GIT_GITHUB_COM_PASSWORD}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  assignees:
+  - stefthoen
+  ignore:
+  - dependency-name: gatsby-remark-copy-linked-files
+    versions:
+    - 2.7.0
+    - 2.9.0
+  - dependency-name: gatsby-plugin-feed
+    versions:
+    - 2.12.0
+    - 2.8.0
+  - dependency-name: gatsby-plugin-mdx
+    versions:
+    - 1.7.1
+  - dependency-name: gatsby-remark-images
+    versions:
+    - 3.8.1
+  registries:
+  - git-github-com
